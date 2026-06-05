@@ -2,6 +2,7 @@ import { useCallback, useState } from 'react'
 import { motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
 import { MenuOption } from './MenuOption'
+import { TetrisBackground } from './TetrisBackground'
 import { useKeyboardNav } from '../hooks/useKeyboardNav'
 import { useSound } from '../hooks/useSound'
 import type { Accent } from '../lib/accent'
@@ -52,8 +53,11 @@ export function MainMenu() {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3 }}
     >
+      {/* fundo animado de Tetris */}
+      <TetrisBackground />
+
       {/* título */}
-      <div className="mb-5 text-center sm:mb-8">
+      <div className="relative z-10 mb-5 text-center sm:mb-8">
         <motion.h1
           className="glow-magenta text-magenta text-xl leading-relaxed sm:text-4xl"
           initial={{ scale: 0.8, opacity: 0 }}
@@ -71,7 +75,7 @@ export function MainMenu() {
       </div>
 
       {/* menu */}
-      <nav className="pixel-box w-full max-w-md p-3 sm:p-5">
+      <nav className="pixel-box relative z-10 w-full max-w-md p-3 sm:p-5">
         {ITEMS.map((item, i) => (
           <MenuOption
             key={item.path}
@@ -95,7 +99,7 @@ export function MainMenu() {
       </nav>
 
       {/* dica de controles */}
-      <p className="mt-6 text-center text-[8px] text-dim sm:mt-8 sm:text-[10px]">
+      <p className="relative z-10 mt-6 text-center text-[8px] text-dim sm:mt-8 sm:text-[10px]">
         ↑ ↓ MOVER &nbsp;·&nbsp; ENTER CONFIRMAR &nbsp;·&nbsp; CLIQUE TAMBÉM FUNCIONA
       </p>
     </motion.div>
