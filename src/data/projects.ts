@@ -11,6 +11,8 @@ export interface Project {
   status: 'live' | 'soon'
   demoUrl?: string
   repoUrl?: string
+  /** vídeo de demonstração (ex.: gravação do OBS em /public) */
+  videoUrl?: string
   /** posição do nó no mapa (em %) */
   x: number
   y: number
@@ -37,13 +39,15 @@ export const projects: Project[] = [
   },
   {
     id: 'p2',
-    title: 'EM BREVE',
+    title: 'DocPipeline — Processamento Inteligente de Faturas',
     world: 'FASE 1-2',
     description:
-      'Próxima fase em construção. Em breve um novo projeto será desbloqueado aqui.',
-    stack: [],
-    difficulty: 0,
-    status: 'soon',
+      'Pipeline serverless no Azure que processa faturas de ponta a ponta: o Document Intelligence extrai os campos, a confiança do modelo decide entre auto-aprovar ou enviar para revisão humana (UI Blazor), e o Azure OpenAI (gpt-4.1-mini) resume e categoriza cada nota. Infra como código em Bicep, autenticação por Managed Identity (zero segredos) e observabilidade no Application Insights.',
+    stack: ['C# / .NET 8', 'Azure Functions', 'Document Intelligence', 'Azure OpenAI', 'Cosmos DB', 'Blazor', 'Bicep'],
+    difficulty: 5,
+    status: 'live',
+    repoUrl: 'https://github.com/GuilhermeAJJ/DocPipeline',
+    videoUrl: '/docpipeline-demo.mp4',
     x: 40,
     y: 44,
     accent: 'cyan',

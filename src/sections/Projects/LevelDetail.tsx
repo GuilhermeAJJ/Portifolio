@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { useRef } from 'react'
 import type { Project } from '../../data/projects'
 import { textColor, glow } from '../../lib/accent'
 import { useSound } from '../../hooks/useSound'
@@ -12,6 +13,7 @@ export function LevelDetail({
 }) {
   const play = useSound()
   const locked = project.status === 'soon'
+  const videoRef = useRef<HTMLVideoElement>(null)
 
   return (
     <motion.div
@@ -40,10 +42,33 @@ export function LevelDetail({
           </div>
         )}
 
-        {/* "screenshot" placeholder */}
-        <div className="mt-4 flex h-32 items-center justify-center border-4 border-panel-border bg-screen text-4xl sm:h-44">
-          {locked ? '🔒' : '🖼️'}
-        </div>
+        {/* vídeo de demonstração (com tela cheia) ou placeholder */}
+        {!locked && project.videoUrl ? (
+          <div className="mt-4">
+            <video
+              ref={videoRef}
+              src={project.videoUrl}
+              controls
+              playsInline
+              preload="metadata"
+              className="h-48 w-full border-4 border-panel-border bg-black object-contain sm:h-64"
+            />
+            <button
+              onMouseEnter={() => play('blip')}
+              onClick={() => {
+                play('coin')
+                videoRef.current?.requestFullscreen?.()
+              }}
+              className="mt-2 border-2 border-yellow px-3 py-1 text-[9px] text-yellow transition-transform hover:-translate-y-0.5 sm:text-xs"
+            >
+              ⛶ TELA CHEIA
+            </button>
+          </div>
+        ) : (
+          <div className="mt-4 flex h-32 items-center justify-center border-4 border-panel-border bg-screen text-4xl sm:h-44">
+            {locked ? '🔒' : '🖼️'}
+          </div>
+        )}
 
         <p className="mt-4 text-[10px] leading-relaxed text-ink sm:text-sm">
           {locked ? '🚧 FASE EM CONSTRUÇÃO — ' : ''}
