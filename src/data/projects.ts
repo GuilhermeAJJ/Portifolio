@@ -46,7 +46,7 @@ export const projects: Project[] = [
     stack: ['C# / .NET 8', 'Azure Functions', 'Document Intelligence', 'Azure OpenAI', 'Cosmos DB', 'Blazor', 'Bicep'],
     difficulty: 5,
     status: 'live',
-    repoUrl: 'https://github.com/GuilhermeAJJ/DocPipeline',
+    repoUrl: 'https://github.com/GuilhermeAJJ/DocPipeLine',
     videoUrl: '/docpipeline-demo.mp4',
     x: 40,
     y: 44,
